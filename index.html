@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>First Carousel Vue.js</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div>
+                <div class="item" @mouseenter="stopAutoplay()" @mouseleave="startAutoplay()">
+                    <!--prendo le foto dal mio array di oggetti dentro data-->
+                    <img :src="images[current].image" :alt="images[current].title" />
+                    <div class="text">
+                        <!--sostituisco i testi con baffo baffo dentro app-->
+                        <h2>{{ images[current].title }}</h2>
+                    </div>
+                </div>
+                <div class="thumbs">
+                    <div class="prev" @click="prevImage"></div>
+                    <div class="next" @click="nextImage"></div>
+                    <!--:class = {chiave"classe css": rispende vero o falso}-->
+                    <div class="thumb" v-for="(element, index) in images" :class="{active: current === index}"
+                        :key="`thumb-${index}`">
+                        <img :src="element.image" :alt="element.title" @click="selectImage(index)" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Vue.js-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!--My js-->
+    <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
